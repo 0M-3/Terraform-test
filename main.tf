@@ -37,7 +37,7 @@ resource "aws_route_table" "prod-route-table" {
 
   route {
     ipv6_cidr_block        = "::/0"
-    egress_only_gateway_id = aws_internet_gateway.prod-gateway.id
+    gateway_id = aws_internet_gateway.prod-gateway.id
   }
 
   tags = {
@@ -90,8 +90,8 @@ resource "aws_security_group" "allow_web" {
 
   ingress {
     description ="SSH"
-    from_port = 2
-    to_port = 2
+    from_port = 22
+    to_port = 22
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -140,7 +140,7 @@ resource "aws_instance" "web-server-instance" {
               sudo apt update -y
               sudo apt install apache2 -y
               sudo systemctl start apache2
-              sudo bash -c "echo hello world on your first web server > /var/www/html/index.html"
+              sudo bash -c 'echo hello world on your first web server > /var/www/html/index.html'
               EOF
   tags = {
     Name = "web-server"
