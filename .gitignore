@@ -1,2 +1,6 @@
 terraform.tfvars
 terraform-provider-aws_v5.76.0_x5.exe
+terraform.tfstate
+terraform.tfstate.backup
+LICENSE.txt
+.terraform.lock.hcl
